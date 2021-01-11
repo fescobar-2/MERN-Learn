@@ -1,10 +1,12 @@
 import config from './../config/config';
 import app from './express';
 import mongoose from 'mongoose';
-//import userRoutes from './routes/user.routes';
+import userRoutes from './routes/user.routes';
+import authRoutes from './routes/auth.routes';
 
 
-//app.use('/', userRoutes);
+app.use('/', userRoutes);
+app.use('/', authRoutes);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoUri, {

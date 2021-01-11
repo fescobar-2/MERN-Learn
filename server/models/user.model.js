@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import crypto from 'crypto';
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -20,7 +21,7 @@ const UserSchema = new mongoose.Schema({
     updated:Date,
     hashed_password: {
         type: String,
-        required: 'Password is required'
+        required: "Password is required"
     },
     salt: String,
 });
@@ -47,7 +48,7 @@ UserSchema.path('hashed_password').validate(function(v) {
 
 UserSchema.methods = {
     authenticate: function(plainText) {
-        return this.encryptPassword(PlainText)  === this.hashed_password;
+        return this.encryptPassword(plainText)  === this.hashed_password;
     },
     encryptPassword: function(password) {
         if(!password) return '';
