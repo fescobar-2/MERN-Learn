@@ -9,15 +9,15 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 
-// modules for server side rendering
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import MainRouter from './../client/MainRouter'
-import { StaticRouter } from 'react-router-dom'
+// // modules for server side rendering
+// import React from 'react'
+// import ReactDOMServer from 'react-dom/server'
+// import MainRouter from './../client/MainRouter'
+// import { StaticRouter } from 'react-router-dom'
 
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
-import theme from './../client/theme'
-//end
+// import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
+// import theme from './../client/theme'
+// //end
 
 //comment out before building for production
 import devBundle from './devBundle'
