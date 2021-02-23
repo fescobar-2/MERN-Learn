@@ -25,7 +25,7 @@ const config = {
                 use: 'file-loader'
             }
         ]
-    }
+    },
 }
 
 module.exports = config

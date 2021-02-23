@@ -8,6 +8,7 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import Users from './../client/user/Users'
 
 // // modules for server side rendering
 // import React from 'react'
@@ -44,7 +45,7 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use('/', userRoutes)
 app.use('/', authRoutes)
 
-app.get('/', (req,res) => {
+app.get('*', (req,res) => {
   res.status(200).send(Template());
 })
 
