@@ -26,8 +26,16 @@ const useStyles = makeStyles(theme => ({
 export default function Home(){
     const classes = useStyles()
     return (
-        <div>            
+        <div>          
+            <Card>
             <Link href="/users">Users</Link>
+            </Card>  
+            <Card>
+              <Link href="/signup">Sign Up</Link>
+            </Card>
+            <Card>
+              <Link href="/signin">Sign In</Link>
+            </Card>  
             <Card className={classes.card}>
                 <Typography variant="h6" className={classes.title}>
                     Home Page

@@ -55,7 +55,7 @@ const Users = () => {
         </Typography>
         <List dense>
          {users.map((item, i) => {
-          return <Link href={"/user/" + item._id} key={i}>
+          return <Link to={"/user/" + item._id} key={i}>
                     <ListItem button>
                       <ListItemAvatar>
                         <Avatar>

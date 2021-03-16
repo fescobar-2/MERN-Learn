@@ -1,5 +1,5 @@
 //Sign in Method for auth POST
-const signin = async(user) => {
+const signin = async (user) => {
   try {
     let response = await fetch('/auth/signin/', {
       method: 'POST',
@@ -10,19 +10,22 @@ const signin = async(user) => {
       credentials: 'include',
       body: JSON.stringify(user)
     })
-    return await response.json();
-  } catch (err) {
-    console.log(err);
+    return await response.json()
+  } catch(err) {
+    console.log(err)
   }
 }
 //Sign out method GET
 const signout = async () => {
   try {
-    let response = await fetch('/auth/signout/', {method: 'GET'})
-    return await response.json();
-  } catch (err) {
-    console.log(err);
+    let response = await fetch('/auth/signout/', { method: 'GET' })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
   }
 }
 
-export { signin, signout }
+export {
+  signin,
+  signout
+}

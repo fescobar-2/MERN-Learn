@@ -1,4 +1,4 @@
-import signout from './../auth/api-auth.js'
+import { signout } from './api-auth.js'
 
 const auth = {
   isAuthenticated() {
@@ -11,8 +11,9 @@ const auth = {
       return false;
   },
   authenticate(jwt,cb) {
-    if(typeof window !== "undefined")
+    if(typeof window !== "undefined"){
       sessionStorage.setItem('jwt', JSON.stringify(jwt))
+    }
     cb();
   },
   clearJWT(cb) {
