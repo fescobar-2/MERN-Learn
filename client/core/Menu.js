@@ -14,6 +14,14 @@ const isActive = (history, path) => {
   else
     return {color: '#ffffff'}
 }
+
+const isPartActive = (history, path) => {
+  if (history.location.pathname.includes(path))
+    return {color: '#fffde7', backgroundColor: '#f57c00', marginRight:10}
+  else
+    return {color: '#616161', backgroundColor: '#fffde7', border:'1px solid #f57c00', marginRight:10}
+}
+
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
@@ -50,6 +58,13 @@ const Menu = withRouter(({history}) => (
             }}>Sign out</Button>
         </span>)
       }
+      {auth.isAuthenticated() && (<span>
+        {auth.isAuthenticated().user.educator &&
+        (<Link to="/teach/courses">
+          <Button style={isPartActive(history, "/teach")}>
+            {/*<Library/>*/} Teach </Button>
+        </Link>)}
+      </span>)}
     </Toolbar>
   </AppBar>
 ))

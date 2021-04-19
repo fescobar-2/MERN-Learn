@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
         required: "Password is required"
     },
     salt: String,
+    educator: {
+        type: Boolean,
+        default: false
+    }
 });
 
 UserSchema

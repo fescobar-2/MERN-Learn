@@ -11,9 +11,9 @@ import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import auth from '../auth/auth-helper'
+import auth from './../auth/auth-helper'
 import {listByInstructor} from './api-course.js'
-import {Redirect,Link} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -23,31 +23,31 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(12)
   }),
   title: {
-    margin: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(1)}`,
+    margin: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(1)}px` ,
     color: theme.palette.protectedTitle,
     fontSize: '1.2em'
   },
-  addButton: {
-    float: 'right'
+  addButton:{
+    float:'right'
   },
   leftIcon: {
     marginRight: "8px"
   },
   avatar: {
     borderRadius: 0,
-    width: 65,
-    height:40
+    width:65,
+    height: 40
   },
   listText: {
     marginLeft: 16
   }
 }))
 
-export default function MyCourses() {
+export default function MyCourses(){
   const classes = useStyles()
   const [courses, setCourses] = useState([])
   const [redirectToSignin, setRedirectToSignin] = useState(false)
-  const jwt = auth.isAuthenticated
+  const jwt = auth.isAuthenticated()
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -67,9 +67,8 @@ export default function MyCourses() {
   }, [])
 
   if (redirectToSignin) {
-    return <Redirect to='/signin/'/>
+    return <Redirect to='/signin'/>
   }
-
   return (
     <div>
       <Paper className={classes.root} elevation={4}>
@@ -78,14 +77,14 @@ export default function MyCourses() {
           <span className={classes.addButton}>
             <Link to="/teach/course/new">
               <Button color="primary" variant="contained">
-                <Icon className={classes.leftIcon}>add_box</Icon> New Course
+                <Icon className={classes.leftIcon}>add_box</Icon>  New Course
               </Button>
             </Link>
           </span>
         </Typography>
         <List dense>
           {courses.map((course, i) => {
-            return <Link to={"/teach/course/" + course._id} key={i}>
+            return   <Link to={"/teach/course/"+course._id} key={i}>
               <ListItem button>
                 <ListItemAvatar>
                   <Avatar src={'/api/courses/photo/'+course._id+"?" + new Date().getTime()} className={classes.avatar}/>

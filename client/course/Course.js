@@ -15,7 +15,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
 import {read, update} from './api-course.js'
-import {enrollmentStats} from './../enrollment/api-enrollment'
+//import {enrollmentStats} from './../enrollment/api-enrollment'
 import {Link, Redirect} from 'react-router-dom'
 import auth from './../auth/auth-helper'
 import DeleteCourse from './DeleteCourse'
@@ -25,9 +25,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Enroll from './../enrollment/Enroll'
-import { Person } from '@material-ui/icons'
-import { Icon } from '@material-ui/core'
+//import Enroll from './../enrollment/Enroll'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -87,9 +85,9 @@ const useStyles = makeStyles(theme => ({
       color: '#b6ab9a'
     }
   },
-  enroll:{
-    float: 'right'
-  }
+   enroll:{
+     float: 'right'
+   }
 }))
 
 export default function Course ({match}) {
@@ -180,11 +178,11 @@ export default function Course ({match}) {
                 )}
                 </span>)
              }
-                {course.published && (<div>
+                {/*course.published && (<div>
                   <span className={classes.statSpan}><PeopleIcon /> {stats.totalEnrolled} enrolled </span>
                   <span className={classes.statSpan}><CompletedIcon/> {stats.totalCompleted} completed </span>
                   </div>
-                  )}
+                )*/}
 
                 </>
             }
@@ -200,11 +198,11 @@ export default function Course ({match}) {
                         {course.description}<br/>
                     </Typography>
 
-            {course.published && <div className={classes.enroll}><Enroll courseId={course._id}/></div>}
+            {/*course.published && <div className={classes.enroll}><Enroll courseId={course._id}/></div>*/}
                     
 
+                    </div>
                   </div>
-                </div>
                 <Divider/>
                 <div>
                   <CardHeader
