@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const EnrollSchema = mongoose.Schema({
+const EnrollmentSchema = mongoose.Schema({
   course: {type: mongoose.Schema.ObjectId, ref:'Course'},
   updated: Date,
   enrolled: {

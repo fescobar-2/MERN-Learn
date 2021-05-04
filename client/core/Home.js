@@ -3,9 +3,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import Divider from '@material-ui/core/Divider'
 import {listPublished} from './../course/api-course'
+import {listEnrolled, listCompleted} from './../enrollment/api-enrollment'
 import Typography from '@material-ui/core/Typography'
 import auth from './../auth/auth-helper'
 import Courses from './../course/Courses'
+import Enrollments from '../enrollment/Enrollments'
+
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -66,6 +69,21 @@ export default function Home(){
     const classes = useStyles()
     const jwt = auth.isAuthenticated()
     const [courses, setCourses] = useState([])
+    const [enrolled, setEnrolled] = useState([])
+    useEffect(() => {
+        const abortController = new AbortController()
+        const signal = abortController.signal
+        listEnrolled({t: jwt.token}, signal).then((data) => {
+            if (data.error) {
+                console.log(data.error)
+            } else {
+                setEnrolled(data)
+            }
+        })
+        return function cleanup(){
+            abortController.abort()
+        }
+    }, [])
     useEffect(() => {
         const abortController = new AbortController()
         const signal = abortController.signal
@@ -80,12 +98,22 @@ export default function Home(){
             abortController.abort()
         }
     }, [])
-    return (<div className={classes.extraTop}>          
+    return (<div className={classes.extraTop}>
+        {auth.isAuthenticated().user && (
+            <Card className={`${classes.card} ${classes.enrolledCard}`}>
+              <Typography variant="h6" component="h2" className={classes.enrolledTitle}>
+                  Courses you are enrolled in
+              </Typography>
+              {enrolled.length != 0 ? (<Enrollments enrollments={enrolled}/>)
+                                   : (<Typography variant="body1" className={classes.noTitle}>No courses.</Typography>)
+            }
+            </Card>
+        )}
             <Card className={classes.card}>
                 <Typography variant="h5" component="h2">
                     All Courses
                 </Typography>
-                {(courses.length != 0) ? (<Courses courses={courses}/>)
+                {(courses.length != 0 && courses.length != enrolled.length) ? (<Courses courses={courses} common={enrolled}/>)
                     : (<Typography variant="body1" className={classes.noTitle}>No new courses.</Typography>)
                 }
             </Card>
