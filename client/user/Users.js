@@ -14,11 +14,11 @@ import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-user.js'
 
-//Styles
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
-    margin: theme.spacing(5)
+    margin: theme.spacing(5),
+    marginTop: theme.spacing(12),
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Users = () => { 
+export default function Users() { 
   const classes = useStyles()
   const [users, setUsers] = useState([])
 
@@ -76,5 +76,4 @@ const Users = () => {
       </Paper>
     )
 }
-
-export default Users;
+ 
