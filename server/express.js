@@ -47,6 +47,7 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', courseRoutes)
 app.use('/', enrollmentRoutes)
+app.use('/', postRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()
