@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -22,12 +22,13 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 600,
     margin: 'auto',
     padding: theme.spacing(3),
-    marginTop: theme.spacing(12)
+    marginTop: theme.spacing(5)
   }),
   title: {
-    marginTop: theme.spacing(3),
-    color: theme.palette.protectedTitle
-  }
+    margin: `${theme.spacing(2)}px ${theme.spacing(1)}px 0`,
+    color: theme.palette.protectedTitle,
+    fontSize: '1em' 
+  },
 }))
 
 export default function Profile({ match }) {
@@ -47,9 +48,9 @@ export default function Profile({ match }) {
         setRedirectToSignin(true)
       } else {
         setUser(data)
+        console.log(data)
       }
     })
-
     return function cleanup(){
       abortController.abort()
     }
@@ -85,10 +86,12 @@ export default function Profile({ match }) {
           </ListItem>
           <Divider/>
           <ListItem>
-            <ListItemText primary={"Joined: " + (
+            <ListItemText primary={user.about} secondary={"Joined: " + (
               new Date(user.created)).toDateString()}/>
           </ListItem>
         </List>
       </Paper>
     )
   }
+
+

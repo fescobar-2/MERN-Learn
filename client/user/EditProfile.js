@@ -48,7 +48,8 @@ export default function EditProfile({ match }) {
     open: false,
     error: '',
     redirectToProfile: false,
-    educator: false
+    educator: false,
+    about:''
   })
   const jwt = auth.isAuthenticated()
 
@@ -62,7 +63,7 @@ export default function EditProfile({ match }) {
       if (data && data.error) {
         setValues({...values, error: data.error})
       } else {
-        setValues({...values, name: data.name, email: data.email, educator: data.educator})
+        setValues({...values, name: data.name, email: data.email, about: data.about, educator: data.educator})
       }
     })
     return function cleanup(){
@@ -76,7 +77,8 @@ export default function EditProfile({ match }) {
       name: values.name || undefined,
       email: values.email || undefined,
       password: values.password || undefined,
-      educator: values.educator 
+      educator: values.educator,
+      about: values.about 
     }
     update({
       userId: match.params.userId
@@ -111,6 +113,15 @@ export default function EditProfile({ match }) {
           Edit Profile
         </Typography>
         <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
+        <TextField
+          id="multiline-flexible"
+          label="About"
+          multiline
+          rows="2"
+          value={values.about}
+          className={classes.textField}
+          onChange={handleChange('about')}
+        />
         <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
         <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
         <br/> 
