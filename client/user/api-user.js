@@ -20,7 +20,7 @@ const list = async (signal) => {
   try {
     let response = await fetch('/api/users/', {
       method: 'GET',
-      signal: signal,
+      signal: signal
     })
     return await response.json()
   } catch(err) {
@@ -55,7 +55,7 @@ const update = async (params, credentials, user) => {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + credentials.t
       },
-      body: JSON.stringify(user)
+      body: user
     })
     return await response.json()
   } catch(err) {

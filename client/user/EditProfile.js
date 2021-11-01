@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 600,
     margin: 'auto',
     textAlign: 'center',
-    marginTop: theme.spacing(12),
+    marginTop: theme.spacing(5),
     paddingBottom: theme.spacing(2)
   },
   title: {
@@ -113,25 +113,27 @@ export default function EditProfile({ match }) {
         setValues({...values, error: data.error})
       } else {
         auth.updateUser(data, ()=>{
-          setValues({...values, userId: data._id, redirectToProfile: true})
+          setValues({...values, 'redirectToProfile': true})
         })
       }
     })
   }
-  
   const handleChange = name => event => {
     const value = name === 'photo'
     ? event.target.files[0]
     : event.target.value
-    setValues({...values, [name]: event.target.value })
+    setValues({...values, [name]: value })
   }
+  const photoUrl = values.id
+                 ? `/api/users/photo/${values.id}?${new Date().getTime()}`
+                 : '/api/users/defaultphoto'
 
   const handleCheck = (event, checked) => {
     setValues({...values, educator: checked})
   }
 
   if (values.redirectToProfile) {
-    return (<Redirect to={'/user/' + values.userId}/>)
+    return (<Redirect to={'/user/' + values.id}/>)
   }
   return (
     <Card className={classes.card}>
@@ -139,7 +141,7 @@ export default function EditProfile({ match }) {
         <Typography variant="h6" className={classes.title}>
           Edit Profile
         </Typography>
-        <Avatar /*src={photoUrl}*/ className={classes.bigAvatar}/><br/>
+        <Avatar src={photoUrl} className={classes.bigAvatar}/><br/>
         <input accept="image/*" onChange={handleChange('photo')} className={classes.input} id="icon-button-file" type="file" />
         <label htmlFor="icon-button-file">
           <Button variant="contained" color="default" component="span">

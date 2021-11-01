@@ -10,12 +10,12 @@ import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Edit from '@material-ui/icons/Edit'
-import Person from '@material-ui/icons/Person'
 import Divider from '@material-ui/core/Divider'
 import DeleteUser from './DeleteUser'
 import auth from './../auth/auth-helper'
 import {read} from './api-user.js'
 import {Redirect, Link} from 'react-router-dom'
+// import {listByUser} from './../post/api-post.js'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -29,6 +29,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.protectedTitle,
     fontSize: '1em' 
   },
+  bigAvatar: {
+    width: 60,
+    height: 60,
+    margin: 10
+  }
 }))
 
 export default function Profile({ match }) {
@@ -48,7 +53,6 @@ export default function Profile({ match }) {
         setRedirectToSignin(true)
       } else {
         setUser(data)
-        console.log(data)
       }
     })
     return function cleanup(){
@@ -57,6 +61,9 @@ export default function Profile({ match }) {
 
   }, [match.params.userId])
   
+  const photoUrl = user._id
+              ? `/api/users/photo/${user._id}?${new Date().getTime()}`
+              : '/api/users/defaultphoto'
     if (redirectToSignin) {
       return <Redirect to='/signin'/>
     }
@@ -68,9 +75,7 @@ export default function Profile({ match }) {
         <List dense>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <Person/>
-              </Avatar>
+              <Avatar src={photoUrl} className={classes.bigAvatar}/>
             </ListItemAvatar>
             <ListItemText primary={user.name} secondary={user.email}/> {
              auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
