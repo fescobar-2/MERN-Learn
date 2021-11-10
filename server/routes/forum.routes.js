@@ -15,6 +15,7 @@ router.route('/api/forum/uncomment')
     .put(authCtrl.requireSignin, forumCtrl.uncomment)
 
 router.param('userId', userCtrl.userByID)
+router.param('forumId', forumCtrl.forumByID)
 //route for creating forum
 // POST ('/api/forum/new/:lessonId')
 //route for removing forum

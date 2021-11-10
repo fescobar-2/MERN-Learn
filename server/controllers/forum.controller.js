@@ -18,7 +18,18 @@ const comment = async (req, res) => {
 
 //create forum
 
-//get forum by lessonId
+//get forum by Id
+const forumByID = async(req, res, next, id) => {
+  try {
+    let forum = await Forum.findById(id)
+    req.profile = forum
+    next()
+  } catch (err) {
+    return res.status('400').json({
+      error: "Could not retrieve Forum"
+    })
+  }
+}
 
 //remove forum
 
