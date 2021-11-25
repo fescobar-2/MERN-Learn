@@ -1,3 +1,5 @@
+import Forum from "../models/forum.model"
+
 //Comment function for forum
 const comment = async (req, res) => {
   let comment = req.body.comment
@@ -17,6 +19,7 @@ const comment = async (req, res) => {
 //imports
 
 //create forum
+
 
 //get forum by Id
 const forumByID = async(req, res, next, id) => {

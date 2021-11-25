@@ -10,6 +10,7 @@ import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import courseRoutes from './routes/course.routes'
 import enrollmentRoutes from './routes/enrollment.routes'
+import forumRoutes from './routes/forum.routes'
 
 // modules for server side rendering
 import React from 'react'
@@ -47,7 +48,7 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', courseRoutes)
 app.use('/', enrollmentRoutes)
-//app.use('/', postRoutes)
+//app.use('/', forumRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()

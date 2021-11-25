@@ -13,6 +13,7 @@ import Course from './course/Course'
 import EditCourse from './course/EditCourse'
 import MyCourses from './course/MyCourses'
 import Enrollment from './enrollment/Enrollment'
+import Forum from './forum/Forum'
 
 const MainRouter = () => {
     return (<div>
@@ -30,6 +31,7 @@ const MainRouter = () => {
         <PrivateRoute path="/teach/course/new" component={NewCourse}/>
         <PrivateRoute path="/teach/course/edit/:courseId" component={EditCourse}/>
         <PrivateRoute path="/teach/course/:courseId" component={Course}/>
+        <PrivateRoute path="/learn/course/:courseId/:lessonId/forum" component={Forum}/>
         <PrivateRoute path="/learn/:enrollmentId" component={Enrollment}/>
       </Switch>
     </div>)
