@@ -1,28 +1,43 @@
 import mongoose from 'mongoose'
 
-const ForumSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: 'Text is required'
-  },
-  comments: [{
-    text: String,
-    created: { type: Date, default: Date.now },
-    postedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
-    likes: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
-  }],
-  created: {
-    type: Date,
-    default: Date.now
-  }
-})
-const Forum = mongoose.model('Forum', ForumSchema)
+// const ForumSchema = new mongoose.Schema({
+//   title: {
+//     type: String,
+//     required: 'Text is required'
+//   },
+//   comments: [{
+//     text: String,
+//     created: { type: Date, default: Date.now },
+//     postedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
+//     likes: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
+//   }],
+//   created: {
+//     type: Date,
+//     default: Date.now
+//   }
+// })
+// const Forum = mongoose.model('Forum', ForumSchema)
 
 const LessonSchema = new mongoose.Schema({
   title: String,
   content: String,
   resource_url: String,
-  forum: {ForumSchema}
+  // forum: ForumSchema
+  forum: {
+    title: {
+      type: String
+    },
+    comments: [{
+      text: String,
+      created: { type: Date, default: Date.now },
+      postedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
+      likes: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
+    }],
+    created: {
+      type: Date,
+      default: Date.now
+    }
+  }
 })
 const Lesson = mongoose.model('Lesson', LessonSchema)
 

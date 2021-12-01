@@ -24,7 +24,7 @@ export default function NewLesson(props) {
     title: '',
     content: '',
     resource_url: ''
-  })
+    })
   
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
@@ -34,7 +34,17 @@ export default function NewLesson(props) {
     const lesson = {
       title: values.title || undefined,
       content: values.content || undefined,
-      resource_url: values.resource_url || undefined
+      resource_url: values.resource_url || undefined,
+      forum: {
+        title: '',
+        comments: [],
+        created: Date.now()
+      }
+      // forum: {
+      //   title: '',
+      //   comments: '',
+      //   created:''
+      // }
     }
     newLesson({
       courseId: props.courseId
@@ -47,7 +57,8 @@ export default function NewLesson(props) {
           props.addLesson(data)
           setValues({...values, title: '',
           content: '',
-          resource_url: ''})
+          resource_url: ''
+        })
           setOpen(false)
       }
     })

@@ -50,6 +50,28 @@ const courseByID = async (req, res, next, id) => {
   }
 }
 
+//Get Lesson by Id, and append to req
+const lessonById = async (req, res, next, id) => {
+  try {
+    let lesson = await Lesson.findById(id).populate('_id');
+    if(!lesson)
+      return res.status('404').json({
+        error: "Lesson not found"
+      })
+      req.lesson = lesson
+      next()
+  } catch (err) {
+    return res.status('400').json({
+      error: "Could not retrieve Lesson"
+    })
+    
+  }
+}
+
+//Funcion getForum (req.lesson._id)
+
+
+
 const read = (req, res) => {
   req.course.image = undefined
   return res.json(req.course)
@@ -178,6 +200,7 @@ export default {
   photo,
   defaultPhoto,
   newLesson,
-  listPublished
+  listPublished,
+  lessonById
  }
  
