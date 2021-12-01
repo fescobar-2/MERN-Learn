@@ -40,11 +40,6 @@ export default function NewLesson(props) {
         comments: [],
         created: Date.now()
       }
-      // forum: {
-      //   title: '',
-      //   comments: '',
-      //   created:''
-      // }
     }
     newLesson({
       courseId: props.courseId
