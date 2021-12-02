@@ -27,10 +27,10 @@ router.route('/api/courses/:courseId')
   .put(authCtrl.requireSignin, courseCtrl.isInstructor, courseCtrl.update)
   .delete(authCtrl.requireSignin, courseCtrl.isInstructor, courseCtrl.remove)
 
-// router.route('/api/courses/:courseId/:lessonId/forum')
-//   .get(courseCtrl.getForum)
+router.route('/api/courses/:courseId/:lessonId/forum')
+  .get(authCtrl.requireSignin, courseCtrl.getForum)
 
 router.param('userId', userCtrl.userByID)
 router.param('courseId', courseCtrl.courseByID)
-//router.param('lessonId', courseCtrl.lessonById)
+router.param('lessonId', courseCtrl.lessonById)
 export default router

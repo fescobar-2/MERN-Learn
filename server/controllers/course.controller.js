@@ -69,7 +69,7 @@ const lessonById = async (req, res, next, id) => {
 }
 
 //Funcion getForum (req.lesson._id)
-
+const getForum = (req, res) => console.log(req.lesson._id);
 
 
 const read = (req, res) => {
@@ -201,6 +201,7 @@ export default {
   defaultPhoto,
   newLesson,
   listPublished,
-  lessonById
+  lessonById,
+  getForum
  }
  

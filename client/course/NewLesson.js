@@ -99,6 +99,13 @@ export default function NewLesson(props) {
             fullWidth
             value={values.resource_url} onChange={handleChange('resource_url')}
           /><br/>
+          <TextField
+            margin="dense"
+            label="Resource link"
+            type="text"
+            fullWidth
+            value={values.resource_url} onChange={handleChange('resource_url')}
+          /><br/>
           
         </DialogContent>
         

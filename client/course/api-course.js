@@ -107,6 +107,25 @@ const newLesson = async (params, credentials, lesson) => {
     console.log(err)
   }
 }
+
+const getForum = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/courses/'+params.courseId+'/'+params.lessonId+'/forum', {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return response.json()
+  } catch(err){
+    console.log(err)
+  }
+}
+
+
 const listPublished = async (signal) => {
   try {
     let response = await fetch('/api/courses/published', {
@@ -122,6 +141,7 @@ const listPublished = async (signal) => {
     console.log(err)
   }
 }
+
 export {
   create,
   list,
@@ -130,5 +150,6 @@ export {
   remove,
   listByInstructor,
   newLesson,
+  getForum,
   listPublished
 }
