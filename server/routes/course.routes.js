@@ -32,5 +32,4 @@ router.route('/api/courses/:courseId/:lessonId/forum')
 
 router.param('userId', userCtrl.userByID)
 router.param('courseId', courseCtrl.courseByID)
-router.param('lessonId', courseCtrl.lessonById)
 export default router

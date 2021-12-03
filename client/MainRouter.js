@@ -18,7 +18,7 @@ import Forum from './course/Forum'
 const MainRouter = () => {
     return (<div>
       <Menu/>
-      <Switch>
+      <Switch> 
         <Route exact path="/" component={Home}/>
         <Route path="/users" component={Users}/>
         <Route path="/signup" component={Signup}/>
@@ -26,13 +26,13 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
         <Route path="/course/:courseId" component={Course}/>
+        <Route path="/learn/:courseId/:lessonId/forum" component={Forum}/>
         <PrivateRoute path="/teach/courses" component={MyCourses}/>
 
         <PrivateRoute path="/teach/course/new" component={NewCourse}/>
         <PrivateRoute path="/teach/course/edit/:courseId" component={EditCourse}/>
         <PrivateRoute path="/teach/course/:courseId" component={Course}/>
         <PrivateRoute path="/learn/:enrollmentId" component={Enrollment}/>
-        <PrivateRoute path="/learn/:courseId/:lessonId/forum" component={Forum}/>
       </Switch>
     </div>)
 }

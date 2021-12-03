@@ -298,6 +298,11 @@ export default function Enrollment ({match}) {
                 <CardActions>
                   <a href={enrollment.course.lessons[values.drawer].resource_url}><Button variant="contained" color="primary">Resource Link</Button></a>
                 </CardActions>
+                <CardActions>
+                  <a href="/learn/dsadasjfnas/fnaskldlas/forum"><Button variant="contained" color="primary">Forum</Button></a>
+                </CardActions>
+                
+
             </Card></>)}
       </div>)
 }
